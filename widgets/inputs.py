@@ -1,5 +1,5 @@
 from simplekivy import SimpleKivy 
-s = SimpleKivy()
+s = SimpleKivy(make_app=False)
 
 FIRST_DICT = {"size_hint":(1, .35), "orientation":"vertical"}
 SECOND_DICT = {"size_hint":(1, None), "height":"70dp", "padding":"4dp"}
@@ -20,7 +20,10 @@ data_inputs = [FIRST_DICT,
             ok_btn),    
     ]
 def ok():
+    s = SimpleKivy()
     xs = axis_input.text
     ys = yis_input.text
     print(xs, ys)
+    
+    print(s.get_running_app())
 del s, FIRST_DICT, SECOND_DICT
