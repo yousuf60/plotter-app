@@ -17,4 +17,4 @@ data_inputs = [FIRST_DICT,
         ],
         ok_btn,    
     ]
-del s
+del s, FIRST_DICT, SECOND_DICT
