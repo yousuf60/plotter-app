@@ -1,4 +1,14 @@
 from simplekivy import SimpleKivy 
+from data import DataManager
+
+DATA_FILE = "data.json"
+dataManager = DataManager()
+data = {"xlist":[], "ylist":[]}
+if not dataManager.file_exists(DATA_FILE):
+    dataManager.write_data(DATA_FILE, data)
+
+data = dataManager.read_file(DATA_FILE)
+print(data)
 s = SimpleKivy(make_app=False)
 
 FIRST_DICT = {"size_hint":(1, .35), "orientation":"vertical"}
@@ -20,10 +30,16 @@ data_inputs = [FIRST_DICT,
         ({"size_hint":(1, 1)},
             ok_btn),    
     ]
+
 def ok():
     s = SimpleKivy(make_app=False)
     xs = axis_input.text
     ys = yis_input.text
-    print(xs, ys)
-    print(ok_btn.output)
+    if all((xs.isnumeric(), ys.isnumeric())):
+        data["xlist"].append(xs)
+        data["ylist"].append(ys)
+        print(data)
+        ok_btn.output.text = str(xs)
+
+
 del s, FIRST_DICT, SECOND_DICT
