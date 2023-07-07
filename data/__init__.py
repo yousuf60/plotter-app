@@ -1,2 +1,2 @@
-from .main import DataManager
+from .jsonDataManager import DataManager
 
