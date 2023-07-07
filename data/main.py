@@ -25,11 +25,12 @@ class DataManager:
     def path_join(self, name):
         return os.path.join(data_path, name)
 
-        
+
 if __name__ == "__main__":
     dataManager = DataManager()
     dataManager.make_file("kjakf.json")
     dataManager.write_data("kjakf.json", {"wkeg":[308e10, 0]})
     print(dataManager.read_file("kjakf.json"))
+    dataManager.remove_file("kjakf.json")
     
 
