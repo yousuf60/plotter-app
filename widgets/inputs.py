@@ -4,8 +4,8 @@ s = SimpleKivy(make_app=False)
 FIRST_DICT = {"size_hint":(1, .35), "orientation":"vertical"}
 SECOND_DICT = {"size_hint":(1, None), "height":"70dp", "padding":"4dp"}
 
-axis_input = s.TextInput(hint_text="only numsbers")
-yis_input = s.TextInput(hint_text="only numsbers")
+axis_input = s.TextInput(hint_text="only numsbers", multiline=False)
+yis_input = s.TextInput(hint_text="only numsbers", multiline=False)
 ok_btn = s.Button(text="ok", size_hint=(.4, None), height="50dp", pos_hint={"center_x":.5, "center_y":.7})
 
 ok_btn.on_press = lambda:ok()
