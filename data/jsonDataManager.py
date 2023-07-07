@@ -28,9 +28,9 @@ class DataManager:
 
 if __name__ == "__main__":
     dataManager = DataManager()
-    dataManager.make_file("kjakf.json")
-    dataManager.write_data("kjakf.json", {"wkeg":[308e10, 0]})
-    print(dataManager.read_file("kjakf.json"))
-    dataManager.remove_file("kjakf.json")
+    dataManager.make_file("test.json")
+    dataManager.write_data("test.json", {"wkeg":[308e10, 0]})
+    print(dataManager.read_file("test.json"))
+    dataManager.remove_file("test.json")
     
 
