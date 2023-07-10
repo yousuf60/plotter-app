@@ -8,6 +8,4 @@
 - [numpy](https://github.com/numpy)
 
 ---
-<video controls  width="300">
-<source src="video/plot.webm" type="video/webm">
-</video>
+[plot.webm](https://github.com/yousuf60/plotter-app/assets/64571068/4fac8c41-ae93-4b1c-8f28-de94ea1011a1)
