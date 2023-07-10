@@ -47,7 +47,7 @@ FloatLayout:
             RoundedRectangle:
                 pos: self.pos
                 size: self.size
-                radius: [100, 0, 0, 0]
+                radius: [0, 100, 0, 0]
 
                 
 """
