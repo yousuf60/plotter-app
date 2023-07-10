@@ -7,12 +7,6 @@ from widgets import (
 from time import sleep
 from threading import Thread as t
 
-def x():
-
-    sleep(3)
-    for i in s.myapp.root.walk():
-        print(i, " :  ", i.children)
-
 s = SimpleKivy(title="plotter")
 
 
@@ -52,8 +46,6 @@ FloatLayout:
                 
 """
 
-
-t(target=x).start()
 s + [(
    background,
     [{"orientation":"vertical"},
