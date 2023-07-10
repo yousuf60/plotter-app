@@ -5,7 +5,6 @@ from widgets import (
 )
 
 from time import sleep
-from threading import Thread as t
 
 s = SimpleKivy(title="plotter")
 
