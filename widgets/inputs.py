@@ -13,6 +13,13 @@ DATA_FILE = "data.json"
 s = SimpleKivy(make_app=False)
 dataManager = DataManager(DATA_FILE)
 
+def x_input_text():
+    xlist = data["xlist"]
+    if xlist and digit_render(xlist[-1]):
+        return str(digit_render(xlist[-1])+STEP)
+    else:
+        return "0"
+    
 def digit_render(num):
     try:
         if str(num).isnumeric():
@@ -20,6 +27,7 @@ def digit_render(num):
         return float(num)
     except:
         return 0
+
 def update_plot():
     ok_btn.plt.clf()
     ok_btn.plt.plot(np.asarray(data["xlist"], float), data["ylist"])
@@ -41,7 +49,6 @@ def ok(instance=None):
         update_plot()
     y_input.focus = True
         
-        
 
 def clear_data():
     global data
@@ -50,6 +57,7 @@ def clear_data():
     update_plot()
     x_input.text = "0"
     y_input.text = ""
+
 def pop_data():
     if data["xlist"] and data["ylist"]:
         del data["xlist"][-1], data["ylist"][-1]
@@ -59,18 +67,13 @@ def pop_data():
  
 
 data = {"xlist":[], "ylist":[]}
+
 if not dataManager.file_exists(DATA_FILE):
     dataManager.write_data(data)
 
 data = dataManager.read_file()
 xlist = data["xlist"]
-def x_input_text():
-    xlist = data["xlist"]
-    if xlist and digit_render(xlist[-1]):
-        return str(digit_render(xlist[-1])+STEP)
-    else:
-        return "0"
-    
+
 
 
 x_input = s.TextInput(text=x_input_text(), **INPUT_KWARGS)
@@ -86,6 +89,7 @@ pop_btn = s.Button(text="pop", **BTN_KWARGS)
 ok_btn.on_release = lambda:ok()
 claer_btn.on_press = lambda:clear_data()
 pop_btn.on_press = lambda:pop_data()
+
 
 data_inputs = [FIRST_DICT,
         [SECOND_DICT,
