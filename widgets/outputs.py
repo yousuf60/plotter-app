@@ -1,5 +1,5 @@
 from simplekivy import SimpleKivy 
-from garden_matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+from kivy_garden_matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 import matplotlib.pyplot as plt
 
 plt.style.use('dark_background')
