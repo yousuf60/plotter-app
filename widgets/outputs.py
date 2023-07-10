@@ -1,15 +1,18 @@
 from simplekivy import SimpleKivy 
-s = SimpleKivy()
+from garden_matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+import matplotlib.pyplot as plt
 
-FIRST_DICT = {"size_hint":(1, 1)}
-lbl = s.lang.Builder.load_string("""
-Label:
-    text: "ovek"
-    
+plt.style.use('dark_background')
+s = SimpleKivy(make_app=False)
 
-""")
+FIRST_DICT = {"size_hint":(.8, .4), "pos_hint":{"center_x":.5}}
 
-output_data = ([FIRST_DICT,
-    lbl
-],)
+
+graph = FigureCanvasKivyAgg(plt.gcf(), pos_hint={"center_y":.6, "center_x":.5})
+output_data = [FIRST_DICT,
+    graph
+]
+
+
+
 del s, FIRST_DICT
