@@ -80,7 +80,7 @@ def pop_data():
         dataManager.write_data(data)
         update_plot()
         x_input.text = x_input_text()
- 
+    y_input.text = ""
 
 data = {"xlist":[], "ylist":[]}
 
