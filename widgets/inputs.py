@@ -29,10 +29,25 @@ def digit_render(num):
         return 0
 
 def update_plot():
-    ok_btn.plt.clf()
-    ok_btn.plt.plot(np.asarray(data["xlist"], float), data["ylist"])
-    ok_btn.graph.draw()
+    graph = ok_btn.graph
+    fig = ok_btn.fig
+    xlist = np.asarray(data["xlist"], float)
+    if fig.axes[0].lines:
+        fig.axes[0].lines[0].set_data(xlist, data["ylist"])
+    else:
+        fig.axes[0].plot(xlist, data["ylist"])
+    if data["xlist"]:
+        graph.xmin = min(xlist)
+        graph.xmax = max(xlist)
+        graph.ymin = min(data["ylist"])
+        graph.ymax = max(data["ylist"]) 
+    else:
+        graph.xmin = graph.ymin = 0
+        graph.xmax = graph.ymax = 1
+        
+    graph.home()
 
+    
 def ok(instance=None):
     global data
     s = SimpleKivy(make_app=False)
@@ -57,6 +72,7 @@ def clear_data():
     update_plot()
     x_input.text = "0"
     y_input.text = ""
+    y_input.focus = True
 
 def pop_data():
     if data["xlist"] and data["ylist"]:
@@ -80,14 +96,14 @@ x_input = s.TextInput(text=x_input_text(), **INPUT_KWARGS)
 y_input = s.TextInput(**INPUT_KWARGS, text_validate_unfocus = False,)
 
 y_input.bind(on_text_validate=ok)
-
+y_input.focus = True
 
 ok_btn = s.Button(text="ok", **BTN_KWARGS)
 claer_btn = s.Button(text="clear", **BTN_KWARGS)
 pop_btn = s.Button(text="pop", **BTN_KWARGS)
 
 ok_btn.on_release = lambda:ok()
-claer_btn.on_press = lambda:clear_data()
+claer_btn.on_release = lambda:clear_data()
 pop_btn.on_press = lambda:pop_data()
 
 
