@@ -1,7 +1,10 @@
 from simplekivy import SimpleKivy 
 from widgets import (
     data_inputs,
-    output_data
+    output_data,
+    background,
+    PlotManager,
+    scr
 )
 
 from time import sleep
@@ -9,47 +12,15 @@ from time import sleep
 s = SimpleKivy(title="plotter")
 
 
-background = """
-#: import get_color_from_hex kivy.utils.get_color_from_hex
-FloatLayout:
-    BoxLayout:
-        canvas.before:
-            Color:
-                rgba: get_color_from_hex("#00dcd2")
-            Rectangle:
-                pos: self.pos
-                size: self.size
 
-    FloatLayout:
-        size_hint: 1, .6
-        canvas.after:
-            Color:
-                rgba: get_color_from_hex("#12e1f1")
-            RoundedRectangle:
-                pos: self.pos
-                size: self.size
-                radius: [100, 0, 0, 0]
+front = [{"orientation":"vertical"},data_inputs, output_data]
 
-                
-    FloatLayout:
-        size_hint: 1, .2
-        pos_hint: {"center_y": 0}
-        canvas.after:
-            Color:
-                rgba: get_color_from_hex("#69f0ea")
-            RoundedRectangle:
-                pos: self.pos
-                size: self.size
-                radius: [0, 100, 0, 0]
 
-                
-"""
+
+
 
 s + [(
    background,
-    [{"orientation":"vertical"},
+   front,
         
-        data_inputs, #first piece inputs & button
-
-        output_data]) #second piece plots
-]
+)]

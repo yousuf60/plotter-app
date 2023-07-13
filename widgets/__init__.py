@@ -1,10 +1,15 @@
-from .inputs import data_inputs, ok_btn, data
-from .outputs import output_data, plt, graph, fig
 import numpy as np
 
+from .inputs import inputs
+from .outputs import output_data, plt, graph, fig
+from .manager import PlotManager, scr
+from .background import background
 
-ok_btn.plt = plt
-ok_btn.graph = graph
-ok_btn.fig = fig
+inp = inputs("data.json")
+data_inputs = inp.start()
+print(inp.ok_btn)
+inp.ok_btn.plt = plt
+inp.ok_btn.graph = graph
+inp.ok_btn.fig = fig
+fig.axes[0].plot(np.asarray(inp.data["xlist"], float), inp.data["ylist"], marker=".")
 
-fig.axes[0].plot(np.asarray(data["xlist"], float), data["ylist"], marker=".")
