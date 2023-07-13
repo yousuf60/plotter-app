@@ -3,8 +3,7 @@ from widgets import (
     data_inputs,
     output_data,
     background,
-    PlotManager,
-    scr
+    
 )
 
 from time import sleep

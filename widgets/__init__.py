@@ -2,7 +2,7 @@ import numpy as np
 
 from .inputs import inputs
 from .outputs import output_data, plt, graph, fig
-from .manager import PlotManager, scr
+
 from .background import background
 
 inp = inputs("data.json")
