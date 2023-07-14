@@ -94,8 +94,8 @@ class inputs:
         self.y_input.text = ""
     def creat_data(self, name):
         if name:
-            self.spinner_swich(None, name)
-            self.swich_spinner.values = self.data_files()
+            self.spinner_switch(None, name)
+            self.switch_spinner.values = self.data_files()
     def new_data(self, btnInstance):
         s = SimpleKivy(make_app=False)
         box = s.lang.Builder.load_string("""
@@ -121,7 +121,7 @@ BoxLayout:
         box.popup = popup
         popup.open()
 
-    def spinner_swich(self, spinner, text):
+    def spinner_switch(self, spinner, text):
         self.file_name = os.path.splitext(text)[0]
         self.dataManager.change_file(self.file_name + ".json")
         self.data = {"xlist":[], "ylist":[]}
@@ -131,9 +131,9 @@ BoxLayout:
         print(self.data)
         self.xlist = self.data["xlist"]
         self.update_plot()
-        self.swich_spinner.values = self.data_files()
+        self.switch_spinner.values = self.data_files()
         self.x_input.text = self.x_input_text()
-
+        self.switch_spinner.text = self.file_name
 
     def data_files(self):
         return [os.path.splitext(i)[0] for i in self.dataManager.data_files()]
@@ -158,15 +158,15 @@ BoxLayout:
         self.ok_btn = s.Button(text="ok", **BTN_KWARGS)
         self.clear_btn = s.Button(text="clear", **BTN_KWARGS)
         self.pop_btn = s.Button(text="pop", **BTN_KWARGS)
-        self.swich_spinner = s.Spinner(text="switch", **BTN2_KWARGS)
+        self.switch_spinner = s.Spinner(text="switch", **BTN2_KWARGS)
         self.new_data_btn = s.Button(text = "new", **BTN2_KWARGS, on_press=self.new_data)
         self.delete_file_btn = s.Button(text = "delete", **BTN2_KWARGS, on_press=self.delete_file)
 
         self.ok_btn.on_release = lambda:self.ok()
         self.clear_btn.on_release = lambda:self.clear_data()
         self.pop_btn.on_press = lambda:self.pop_data()
-        self.swich_spinner.bind(text = self.spinner_swich)
-        self.swich_spinner.values = self.data_files()
+        self.switch_spinner.bind(text = self.spinner_switch)
+        self.switch_spinner.values = self.data_files()
 
         data_inputs = [FIRST_DICT,
                 [SECOND_DICT,
@@ -184,7 +184,7 @@ BoxLayout:
 
                 ],[{"size_hint": (.6, None),  "pos_hint":{"center_y":.4, "center_x": .5}, "spacing": "20dp"},
                 self.new_data_btn,
-                self.swich_spinner,
+                self.switch_spinner,
                 self.delete_file_btn ]),
                     
             ]
