@@ -103,7 +103,7 @@ class inputs:
     def creat_data(self, name):
         if name:
             self.spinner_switch(None, name)
-            self.switch_spinner.values = self.data_files()
+            self.spinner_values()
     def new_data(self, btnInstance):
         s = SimpleKivy(make_app=False)
         box = s.lang.Builder.load_string("""
@@ -139,9 +139,10 @@ BoxLayout:
         print(self.data)
         self.xlist = self.data["xlist"]
         self.update_app()
+        self.spinner_values()
+
+    def spinner_values(self):
         self.switch_spinner.values = self.data_files()
-
-
     def data_files(self):
         return [os.path.splitext(i)[0] for i in self.dataManager.data_files()]
 
@@ -176,7 +177,7 @@ BoxLayout:
         self.clear_btn.on_release = lambda:self.clear_data()
         self.pop_btn.on_press = lambda:self.pop_data()
         self.switch_spinner.bind(text = self.spinner_switch)
-        self.switch_spinner.values = self.data_files()
+        self.spinner_values()
 
         data_inputs = [FIRST_DICT,
                 [SECOND_DICT,

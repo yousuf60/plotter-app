@@ -5,7 +5,7 @@ from .outputs import output_data, plt, graph, fig
 
 from .background import background
 
-inp = inputs("data.json")
+inp = inputs()
 data_inputs = inp.start()
 print(inp.ok_btn)
 inp.ok_btn.plt = plt

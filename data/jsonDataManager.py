@@ -1,5 +1,6 @@
 import json
 import os.path
+from os import listdir
 
 path = os.path.abspath(os.path.dirname(__file__))
 # do not forget to make /data dir or edit the code as you need
@@ -8,8 +9,9 @@ data_path = os.path.join(path, "data")
 
 class DataManager:
     
-    def __init__(self, file_name):
-        self.file_name = self.path_join(file_name)
+    def __init__(self, file_name=None):
+        if file_name:
+            self.file_name = self.path_join(file_name)
 
     def make_file(self):
         with open(self.file_name, mode="w") as f:
@@ -36,6 +38,8 @@ class DataManager:
     def change_file(self, file_name):
         self.file_name = self.path_join(file_name)
 
+    def data_files(self):
+        return listdir(data_path)
 
 if __name__ == "__main__":
     dataManager = DataManager("test.json")

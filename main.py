@@ -12,12 +12,9 @@ s = SimpleKivy(title="plotter")
 
 
 
+
+
 front = [{"orientation":"vertical"},data_inputs, output_data]
-
-
-
-
-
 s + [(
    background,
    front,
