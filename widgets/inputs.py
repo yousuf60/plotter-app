@@ -11,8 +11,10 @@ STEP = 1
 class inputs:
     def __init__(self):
         self.dataManager = DataManager()
-        file_name = self.data_files()[0]
-        if not file_name:
+        file_name = self.data_files()
+        if file_name:
+            file_name = file_name[0]
+        else:
             file_name = "data.json"
         self.file_name = os.path.splitext(file_name)[0]
         self.dataManager.change_file(self.file_name + ".json")
@@ -27,7 +29,8 @@ class inputs:
 
     def x_input_text(self):
         xlist = self.data["xlist"]
-        if xlist and self.digit_render(xlist[-1]):
+        
+        if xlist and str(self.digit_render(xlist[-1])):
             return str(self.digit_render(xlist[-1])+STEP)
         else:
             return "0"
@@ -39,7 +42,13 @@ class inputs:
             return float(num)
         except:
             return 0
-
+            
+    def update_app(self):
+        self.update_plot()
+        self.x_input.text = self.x_input_text()
+        self.y_input.text = ""
+        self.switch_spinner.text = self.file_name  
+                    
     def update_plot(self):
         graph = self.ok_btn.graph
         fig = self.ok_btn.fig
@@ -70,9 +79,7 @@ class inputs:
             self.data["xlist"].append(xs)
             self.data["ylist"].append(ys)
             self.dataManager.write_data(self.data)
-            self.x_input.text = str(self.digit_render(xs) + STEP)
-            self.y_input.text = ""
-            self.update_plot()
+            self.update_app()
         self.y_input.focus = True
             
 
@@ -85,6 +92,7 @@ class inputs:
         self.y_input.text = ""
         self.y_input.focus = True
 
+      
     def pop_data(self):
         if self.data["xlist"] and self.data["ylist"]:
             del self.data["xlist"][-1], self.data["ylist"][-1]
@@ -130,15 +138,17 @@ BoxLayout:
         self.data = self.get_data()
         print(self.data)
         self.xlist = self.data["xlist"]
-        self.update_plot()
+        self.update_app()
         self.switch_spinner.values = self.data_files()
-        self.x_input.text = self.x_input_text()
-        self.switch_spinner.text = self.file_name
+
 
     def data_files(self):
         return [os.path.splitext(i)[0] for i in self.dataManager.data_files()]
 
-    def delete_file(self, btn):print(btn)
+    def delete_file(self, btn):
+        self.dataManager.remove_file()
+        self.__init__()
+        self.update_app()
     def start(self):
         s = SimpleKivy(make_app=False)
         FIRST_DICT = {"size_hint":(1, .35), "orientation":"vertical"}
@@ -158,7 +168,7 @@ BoxLayout:
         self.ok_btn = s.Button(text="ok", **BTN_KWARGS)
         self.clear_btn = s.Button(text="clear", **BTN_KWARGS)
         self.pop_btn = s.Button(text="pop", **BTN_KWARGS)
-        self.switch_spinner = s.Spinner(text="switch", **BTN2_KWARGS)
+        self.switch_spinner = s.Spinner(text=self.file_name, **BTN2_KWARGS)
         self.new_data_btn = s.Button(text = "new", **BTN2_KWARGS, on_press=self.new_data)
         self.delete_file_btn = s.Button(text = "delete", **BTN2_KWARGS, on_press=self.delete_file)
 
