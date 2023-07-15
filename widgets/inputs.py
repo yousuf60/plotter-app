@@ -159,7 +159,7 @@ BoxLayout:
         BTN_KWARGS = {"size_hint":(.4, None), "height":"50dp", "background_color":(.8, .8, .8, .7)}
         BTN2_KWARGS = {"background_color": (1, 1, 1, .7), "size_hint": (1, None), 
         "height": "50dp"}
-        INPUT_KWARGS = {"hint_text": "only numsbers", "multiline": False, "background_color": (1, 1, 1, .9)}
+        INPUT_KWARGS = {"hint_text": "only numbers", "multiline": False, "background_color": (1, 1, 1, .9)}
 
 
         self.x_input = s.TextInput(text=self.x_input_text(), **INPUT_KWARGS)
