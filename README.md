@@ -8,4 +8,3 @@
 - [numpy](https://github.com/numpy)
 
 ---
-[plt.webm](https://github.com/yousuf60/plotter-app/assets/64571068/b67f667c-63ef-446e-8c68-629fde40ee33)
