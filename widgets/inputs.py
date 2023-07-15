@@ -143,6 +143,7 @@ BoxLayout:
 
     def spinner_values(self):
         self.switch_spinner.values = self.data_files()
+        
     def data_files(self):
         return [os.path.splitext(i)[0] for i in self.dataManager.data_files()]
 
@@ -150,12 +151,13 @@ BoxLayout:
         self.dataManager.remove_file()
         self.__init__()
         self.update_app()
+
     def start(self):
         s = SimpleKivy(make_app=False)
         FIRST_DICT = {"size_hint":(1, .35), "orientation":"vertical"}
         SECOND_DICT = {"size_hint":(1, None), "height":"70dp", "padding":[0,"4dp"]}
         BTN_KWARGS = {"size_hint":(.4, None), "height":"50dp", "background_color":(.8, .8, .8, .7)}
-        BTN2_KWARGS = {"background_color": (1, 1, 1, .7), "size_hint": (.3, None), 
+        BTN2_KWARGS = {"background_color": (1, 1, 1, .7), "size_hint": (1, None), 
         "height": "50dp"}
         INPUT_KWARGS = {"hint_text": "only numsbers", "multiline": False, "background_color": (1, 1, 1, .9)}
 
@@ -193,7 +195,7 @@ BoxLayout:
                     self.pop_btn,
                     self.clear_btn
 
-                ],[{"size_hint": (.6, None),  "pos_hint":{"center_y":.4, "center_x": .5}, "spacing": "20dp"},
+                ],[{"size_hint": (.8, None),  "pos_hint":{"center_y":.4, "center_x": .5}, "spacing": "20dp"},
                 self.new_data_btn,
                 self.switch_spinner,
                 self.delete_file_btn ]),
